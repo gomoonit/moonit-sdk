@@ -1,6 +1,10 @@
 {
   "name": "@wen-moon-ser/moonshot-sdk",
+<<<<<<< HEAD
   "version": "4.1.2",
+=======
+  "version": "4.1.0-alpha-0.0.6",
+>>>>>>> 601fa21 (v4.1.0-alpha-0.0.6)
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
