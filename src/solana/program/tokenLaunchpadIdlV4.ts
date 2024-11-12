@@ -1,11 +1,11 @@
 export default {
-  address: 'Br3UKo2Jij17LoaTeA9XbHYeXBKRNeRWiVcJpnXksXTM',
+  address: 'MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG',
   metadata: {
     name: 'token_launchpad',
     version: '0.1.0',
     spec: '0.1.0',
     description: 'Created with Anchor',
-    address: 'Br3UKo2Jij17LoaTeA9XbHYeXBKRNeRWiVcJpnXksXTM',
+    address: 'MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG',
   },
   instructions: [
     {

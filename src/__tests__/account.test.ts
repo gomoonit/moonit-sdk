@@ -1,11 +1,14 @@
+import { CurveType } from '@heliofi/launchpad-common';
 import { Environment, Moonshot, Token } from '../domain';
+import 'dotenv/config';
 
 describe('Curve account', () => {
-  const mintAddress = 'AhaAKM3dUKAeYoZCTXF8fqqbjcvugbgEmst6557jkZ9h';
   let moonshot: Moonshot;
-  const rpcUrl =
-    'https://rpc.helius.xyz/?api-key=4739a036-705f-48be-8704-1f5f2eff07fa';
   let token: Token;
+
+  // Read values from the .env file
+  const rpcUrl = process.env.RPC_URL as string;
+  const mintAddress = process.env.MINT_ADDRESS as string;
 
   beforeAll(() => {
     moonshot = new Moonshot({
@@ -23,7 +26,7 @@ describe('Curve account', () => {
     const account = await token.getCurveAccount();
     expect(account).toBeDefined();
 
-    expect(account.curveType).toBe(0);
+    expect(account.curveType).toBe(CurveType.FLAT_V1);
     expect(String(account.mint)).toBe(mintAddress);
   });
 });
