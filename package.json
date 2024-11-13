@@ -1,6 +1,7 @@
 {
   "name": "@wen-moon-ser/moonshot-sdk",
   "version": "4.1.2",
+  "description": "Moonshot SDK",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
