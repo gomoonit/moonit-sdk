@@ -1,5 +1,5 @@
 import { InitTokenOptions } from './InitTokenOptions';
-import { Moonshot } from '../moonshot';
+import { Moonit } from '../moonit';
 import { PrepareTxOptions } from './PrepareTxOptions';
 import { GetCollateralPriceOptions } from './GetCollateralPriceOptions';
 import { GetTokenAmountOptions } from './GetTokenAmountOptions';
@@ -14,14 +14,14 @@ import { AbstractCurveAdapter } from '../curve/AbstractCurveAdapter';
 import { FixedSide } from './FixedSide';
 
 export class BaseToken {
-  protected moonshot: Moonshot;
+  protected moonit: Moonit;
 
   protected readonly mintAddress: string;
 
   protected _curveAdapter?: AbstractCurveAdapter;
 
   constructor(options: InitTokenOptions) {
-    this.moonshot = options.moonshot;
+    this.moonit = options.moonit;
     this.mintAddress = options.mintAddress;
   }
 
@@ -32,13 +32,13 @@ export class BaseToken {
     const curveAccount = await this.getCurveAccount();
     return getCurveAdapter(
       curveAccount,
-      this.moonshot.provider,
+      this.moonit.provider,
       this.mintAddress,
     );
   }
 
   async getCurveAccount(): Promise<CurveAccount> {
-    return getCurveAccount(this.moonshot.provider, this.mintAddress);
+    return getCurveAccount(this.moonit.provider, this.mintAddress);
   }
 
   async getCollateralPrice(
@@ -49,7 +49,7 @@ export class BaseToken {
 
   async getCurvePosition(): Promise<bigint> {
     const curveState = await getCurveAccount(
-      this.moonshot.provider,
+      this.moonit.provider,
       this.mintAddress,
     );
 
@@ -74,7 +74,7 @@ export class BaseToken {
   async prepareIxs(
     options: PrepareTxOptions,
   ): Promise<{ ixs: TransactionInstruction[] }> {
-    const program = this.moonshot.provider.program;
+    const program = this.moonit.provider.program;
 
     const {
       tokenAmount,

@@ -1,1 +1,1 @@
-export * from './moonshot-api';
+export * from './moonit-api';

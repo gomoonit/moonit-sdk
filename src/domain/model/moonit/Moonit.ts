@@ -1,4 +1,4 @@
-import { InitMoonshotOptions } from './InitMoonshotOptions';
+import { InitMoonitOptions } from './InitMoonitOptions';
 import { Environment } from '../environment';
 import { InitTokenOptions, Token } from '../token';
 import {
@@ -6,33 +6,33 @@ import {
   AnchorProviderV1,
   BaseAnchorProvider,
 } from '../../../solana';
-import { MoonshotApiAdapter } from '../../../infra';
+import { MoonitApiAdapter } from '../../../infra';
 import { PrepareMintTxOptions } from './PrepareMintTxOptions';
 import { PrepareMintTxResponse } from './PrepareMintTxResponse';
 import { SubmitMintTxOptions } from './SubmitMintTxOptions';
 import { SubmitMintTxResponse } from './SubmitMintTxResponse';
 
-export class Moonshot {
+export class Moonit {
   private environment: Environment;
 
-  private apiAdapter: MoonshotApiAdapter;
+  private apiAdapter: MoonitApiAdapter;
 
   provider: BaseAnchorProvider<TokenLaunchpadIdl>;
 
-  constructor(options: InitMoonshotOptions) {
+  constructor(options: InitMoonitOptions) {
     this.provider = new AnchorProviderV1(
       options.rpcUrl,
       options.chainOptions?.solana?.confirmOptions,
     );
     this.environment = options.environment;
-    this.apiAdapter = new MoonshotApiAdapter(
+    this.apiAdapter = new MoonitApiAdapter(
       options.authToken ?? '',
       this.environment,
     );
   }
 
-  Token(options: Omit<InitTokenOptions, 'moonshot'>): Token {
-    return new Token({ ...options, moonshot: this });
+  Token(options: Omit<InitTokenOptions, 'moonit'>): Token {
+    return new Token({ ...options, moonit: this });
   }
 
   async prepareMintTx(

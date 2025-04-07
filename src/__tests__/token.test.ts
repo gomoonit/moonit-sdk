@@ -1,9 +1,9 @@
 import { TradeDirection } from '@heliofi/launchpad-common';
-import { Environment, Moonshot, Token } from '../domain';
+import { Environment, Moonit, Token } from '../domain';
 import 'dotenv/config';
 
 describe('Token', () => {
-  let moonshot: Moonshot;
+  let moonit: Moonit;
 
   const rpcUrl = process.env.RPC_URL as string;
   const mintAddress = process.env.TEST_MINT_ADDRESS as string;
@@ -12,12 +12,12 @@ describe('Token', () => {
   const minimalPrice = 27n;
 
   beforeAll(() => {
-    moonshot = new Moonshot({
+    moonit = new Moonit({
       rpcUrl,
       environment: Environment.DEVNET,
     });
 
-    token = moonshot.Token({
+    token = moonit.Token({
       mintAddress: mintAddress,
     });
   });

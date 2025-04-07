@@ -1,5 +1,5 @@
 export * from './token';
-export * from './moonshot';
+export * from './moonit';
 export * from './environment';
 export * from './curve';
 export * from './currency';

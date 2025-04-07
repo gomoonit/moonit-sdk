@@ -9,7 +9,7 @@ export class Token extends BaseToken {
   preload(): Promise<PreloadedToken> {
     return PreloadedToken.init({
       mintAddress: this.mintAddress,
-      moonshot: this.moonshot,
+      moonit: this.moonit,
     });
   }
 }

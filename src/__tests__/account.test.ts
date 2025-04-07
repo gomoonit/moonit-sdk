@@ -1,20 +1,20 @@
 import 'dotenv/config';
-import { Environment, Moonshot, Token } from '../domain';
+import { Environment, Moonit, Token } from '../domain';
 
 describe('Curve account', () => {
-  let moonshot: Moonshot;
+  let moonit: Moonit;
   const rpcUrl = process.env.RPC_URL as string;
   const mintAddress = process.env.TEST_MINT_ADDRESS as string;
 
   let token: Token;
 
   beforeAll(() => {
-    moonshot = new Moonshot({
+    moonit = new Moonit({
       rpcUrl,
       environment: Environment.DEVNET,
     });
 
-    token = moonshot.Token({
+    token = moonit.Token({
       mintAddress,
     });
   });

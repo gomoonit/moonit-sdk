@@ -1,9 +1,9 @@
 import { TradeDirection } from '@heliofi/launchpad-common';
-import { Environment, Moonshot, Token } from '../domain';
+import { Environment, Moonit, Token } from '../domain';
 import 'dotenv/config';
 
 describe('FLAT_V1 curve token', () => {
-  let moonshot: Moonshot;
+  let moonit: Moonit;
 
   const rpcUrl = process.env.RPC_URL as string;
   const mintAddress = process.env.FLAT_CURVE_MINT as string;
@@ -11,12 +11,12 @@ describe('FLAT_V1 curve token', () => {
   let token: Token;
 
   beforeAll(() => {
-    moonshot = new Moonshot({
+    moonit = new Moonit({
       rpcUrl,
       environment: Environment.MAINNET,
     });
 
-    token = moonshot.Token({
+    token = moonit.Token({
       mintAddress: mintAddress,
     });
   });

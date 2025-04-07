@@ -1,5 +1,5 @@
 import { InitTokenOptions } from './InitTokenOptions';
-import { Moonshot } from '../moonshot';
+import { Moonit } from '../moonit';
 import { getCurveAccount } from '../../../solana';
 import { getCurveAdapter } from '../curve';
 import { AbstractCurveAdapter } from '../curve/AbstractCurveAdapter';
@@ -17,7 +17,7 @@ export class PreloadedToken
   extends BaseToken
   implements ITokenPreloadedOperations
 {
-  protected moonshot: Moonshot;
+  protected moonit: Moonit;
 
   protected readonly mintAddress: string;
 
@@ -28,19 +28,19 @@ export class PreloadedToken
     curveAdapter: AbstractCurveAdapter,
   ) {
     super(options);
-    this.moonshot = options.moonshot;
+    this.moonit = options.moonit;
     this.mintAddress = options.mintAddress;
     this._curveAdapter = curveAdapter;
   }
 
   static async init(options: InitTokenOptions): Promise<PreloadedToken> {
     const curveAccount = await getCurveAccount(
-      options.moonshot.provider,
+      options.moonit.provider,
       options.mintAddress,
     );
     const curveAdapter = getCurveAdapter(
       curveAccount,
-      options.moonshot.provider,
+      options.moonit.provider,
       options.mintAddress,
     );
     return new PreloadedToken(options, curveAdapter);

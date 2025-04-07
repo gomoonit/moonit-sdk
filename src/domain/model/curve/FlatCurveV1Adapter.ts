@@ -16,11 +16,11 @@ export class FlatCurveV1Adapter extends AbstractCurveAdapter {
   private readonly curve: FlatCurveV1;
 
   constructor(
-    moonshotProgram: BaseAnchorProvider<TokenLaunchpadIdl>,
+    moonitProgram: BaseAnchorProvider<TokenLaunchpadIdl>,
     mintAddress: string,
     collateralCollected: bigint,
   ) {
-    super(moonshotProgram, mintAddress);
+    super(moonitProgram, mintAddress);
     this.curve = new FlatCurveV1(collateralCollected);
   }
 

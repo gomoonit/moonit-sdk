@@ -15,7 +15,7 @@ import { GetTokenAmountSyncOptions } from '../token/GetTokenAmountSyncOptions';
 
 export abstract class AbstractCurveAdapter {
   constructor(
-    protected moonshotProgram: BaseAnchorProvider<TokenLaunchpadIdl>,
+    protected moonitProgram: BaseAnchorProvider<TokenLaunchpadIdl>,
     protected mintAddress: string,
   ) {}
 
@@ -40,7 +40,7 @@ export abstract class AbstractCurveAdapter {
   ): bigint;
 
   async getCurveAccount(): Promise<CurveAccount> {
-    return getCurveAccount(this.moonshotProgram, this.mintAddress);
+    return getCurveAccount(this.moonitProgram, this.mintAddress);
   }
 
   async getCurvePosition(): Promise<bigint> {

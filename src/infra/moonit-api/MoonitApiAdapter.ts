@@ -8,10 +8,10 @@ import {
   MintTxSubmitDto,
   MintTxSubmitResponse,
 } from '@heliofi/launchpad-common';
-import { PrepareMintTxOptions } from '../../domain/model/moonshot/PrepareMintTxOptions';
+import { PrepareMintTxOptions } from '../../domain/model/moonit/PrepareMintTxOptions';
 import { extractLinks } from '../../solana/utils/extractSocialLinks';
 
-export class MoonshotApiAdapter {
+export class MoonitApiAdapter {
   private apiClient: ApiClient;
 
   constructor(
