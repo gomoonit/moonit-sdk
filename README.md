@@ -4,7 +4,7 @@ Moonit SDK for Solana helps calculate moonit (previously moonshot) token prices 
 
 By Following the example you can create your high-performance trading bot within minutes.
 
-[npm link](https://www.npmjs.com/package/@gomoonit/sdk)
+[npm link](https://www.npmjs.com/package/@moonit/sdk)
 
 ## Installation
 
