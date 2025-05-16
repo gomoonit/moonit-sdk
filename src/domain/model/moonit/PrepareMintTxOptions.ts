@@ -81,4 +81,9 @@ export interface PrepareMintTxOptions {
    * Amount of collateral collected before migration, only for flat curve
    */
   collateralCollected?: string;
+
+  /**
+   * Vanity extension for the token, for example "moon"
+   */
+  vanityExtension?: string;
 }

@@ -7,6 +7,7 @@ import {
   MintTxPrepareResponse,
   MintTxSubmitDto,
   MintTxSubmitResponse,
+  VanityExtension,
 } from '@heliofi/launchpad-common';
 import { PrepareMintTxOptions } from '../../domain/model/moonit/PrepareMintTxOptions';
 import { extractLinks } from '../../solana/utils/extractSocialLinks';
@@ -42,6 +43,9 @@ export class MoonitApiAdapter {
       discord: links.discord,
       telegram: links.telegram,
       website: links.website,
+      vanityExtension: prepareBuyDto?.vanityExtension
+        ? (prepareBuyDto.vanityExtension as VanityExtension)
+        : undefined,
     };
 
     return this.apiClient.authedRequest(
