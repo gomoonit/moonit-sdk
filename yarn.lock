@@ -340,10 +340,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.56.0.tgz#ef20350fec605a7f7035a01764731b2de0f3782b"
   integrity sha512-gMsVel9D7f2HLkBma9VbtzZRehRogVRfbr++f06nL2vnCGCNlzOD+/MUov/F4p8myyAHspEhVobgjpX64q5m6A==
 
-"@heliofi/launchpad-common@1.6.25":
-  version "1.6.25"
-  resolved "https://registry.yarnpkg.com/@heliofi/launchpad-common/-/launchpad-common-1.6.25.tgz#68d3928363c162e0b8b82548bd2a4ca2b7c10e6e"
-  integrity sha512-VSkA8L/2aD8Se3IdekrBxB0+yrljM7du2jhtmnlHiUc+bxduUbHkEWg4z9XozIfB6kmt+UdKuzTndgFE3+vcQQ==
+"@heliofi/launchpad-common@1.6.43":
+  version "1.6.43"
+  resolved "https://registry.yarnpkg.com/@heliofi/launchpad-common/-/launchpad-common-1.6.43.tgz#e262615a5149b85d96a63f3b29b6c2ce07b09372"
+  integrity sha512-BMnp8bnSOKgmM3gy9PXwVHIROIabQBxqmvLTmeQyW7iJqut4eFgA/Y5oHnb+QXyGuytrr92LYah9cQNNFU7iLA==
   dependencies:
     "@solana/web3.js" "1.95.8"
     bad-words "3.0.3"
