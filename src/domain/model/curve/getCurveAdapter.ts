@@ -25,6 +25,12 @@ export const getCurveAdapter = (
         mintAddress,
         curveAccount.marketcapThreshold,
       );
+    case ContractCurveType.FLAT_V1_ANTI_SNIPE:
+      return new FlatCurveV1Adapter(
+        programProvider,
+        mintAddress,
+        curveAccount.marketcapThreshold,
+      );
     default:
       throw new Error('Unsupported curve type');
   }

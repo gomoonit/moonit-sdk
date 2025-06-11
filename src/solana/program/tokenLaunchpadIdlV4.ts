@@ -143,6 +143,80 @@ export const IDL_V4 = {
       ],
     },
     {
+      name: 'buyWithBeAuthority',
+      accounts: [
+        {
+          name: 'backendAuthority',
+          isMut: false,
+          isSigner: true,
+          docs: ['BE Authority'],
+        },
+        {
+          name: 'sender',
+          isMut: true,
+          isSigner: true,
+        },
+        {
+          name: 'senderTokenAccount',
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: 'curveAccount',
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: 'curveTokenAccount',
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: 'dexFee',
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: 'helioFee',
+          isMut: true,
+          isSigner: false,
+        },
+        {
+          name: 'mint',
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: 'configAccount',
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: 'tokenProgram',
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: 'associatedTokenProgram',
+          isMut: false,
+          isSigner: false,
+        },
+        {
+          name: 'systemProgram',
+          isMut: false,
+          isSigner: false,
+        },
+      ],
+      args: [
+        {
+          name: 'data',
+          type: {
+            defined: 'TradeParams',
+          },
+        },
+      ],
+    },
+    {
       name: 'sell',
       accounts: [
         {
@@ -525,6 +599,9 @@ export const IDL_V4 = {
           },
           {
             name: 'FlatCurveV1',
+          },
+          {
+            name: 'FlatCurveV1AntiSnipe',
           },
         ],
       },
@@ -1010,8 +1087,19 @@ export const IDL_V4 = {
       name: 'General',
       msg: 'General error',
     },
+    {
+      code: 6036,
+      name: 'BackendAuthorityRequiredToTrade',
+      msg: 'This token has anti-snipe measures. Trade on https://moon.it',
+    },
+    {
+      code: 6037,
+      name: 'OnlyAntiSnipeCurves',
+      msg: 'Only anti-snipe curves can be traded using this instruction',
+    },
   ],
   metadata: {
     address: 'MoonCVVNZFSYkqNXP6bxHLPL6QQJiMagDL3qcqUQTrG',
   },
 };
+

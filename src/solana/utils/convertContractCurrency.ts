@@ -42,6 +42,9 @@ export function convertContractEnums(curveAccount: CurveAccount): CurveAccount {
     case 'flatcurvev1':
       curveAccount.curveType = ContractCurveType.FLAT_V1;
       break;
+    case 'flatcurvev1antisnipe':
+      curveAccount.curveType = ContractCurveType.FLAT_V1_ANTI_SNIPE;
+      break;
     default:
       throw new Error(`Unknown curve type: ${curveAccount.curveType}`);
   }
