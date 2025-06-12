@@ -51,4 +51,8 @@ export abstract class AbstractCurveAdapter {
       curveState.curveAmount,
     );
   }
+
+  hasAntiSnipeProtection(): boolean {
+    return false;
+  }
 }

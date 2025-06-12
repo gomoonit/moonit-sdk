@@ -125,17 +125,19 @@ describe('FLAT_V1 Anti Snipe curve token', () => {
     expect(buyAmountAtCurvePosA).toBe(buyAmountAtCurvePosB);
   });
 
+  test('prepare a buy transaction should fail for anti snipe curve', async () => {
+    await expect(
+      token.prepareIxs({
+        tokenAmount: 1000000000n,
+        collateralAmount: 100000000n,
+        slippageBps: 100,
+        creatorPK: 'Cb8Fnhp95f9dLxB3sYkNCbN3Mjxuc3v2uQZ7uVeqvNGB',
+        tradeDirection: TradeDirection.BUY,
+      }),
+    ).rejects.toThrow();
+  });
+
   test('get prepared instructions, ready for the submit after signing', async () => {
-    const preparedBuyIx = await token.prepareIxs({
-      tokenAmount: 1000000000n,
-      collateralAmount: 100000000n,
-      slippageBps: 100,
-      creatorPK: 'Cb8Fnhp95f9dLxB3sYkNCbN3Mjxuc3v2uQZ7uVeqvNGB',
-      tradeDirection: TradeDirection.BUY,
-    });
-
-    expect(preparedBuyIx.ixs[0]).toBeDefined();
-
     const preparedSellIx = await token.prepareIxs({
       tokenAmount: 1000000000n,
       collateralAmount: 100000000n,
