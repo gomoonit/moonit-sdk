@@ -71,6 +71,10 @@ export class BaseToken {
     return (await this.curveAdapter()).getCollateralAmountByTokens(options);
   }
 
+  async hasAntiSnipeProtection(): Promise<boolean> {
+    return (await this.curveAdapter()).hasAntiSnipeProtection();
+  }
+
   async prepareIxs(
     options: PrepareTxOptions,
   ): Promise<{ ixs: TransactionInstruction[] }> {
@@ -110,6 +114,12 @@ export class BaseToken {
     direction: 'BUY' | 'SELL',
   ): Promise<TransactionInstruction> {
     if (direction === 'BUY') {
+      if (await this.hasAntiSnipeProtection()) {
+        throw new Error(
+          `Go to https://moon.it/tokens/${this.mintAddress} to trade this token.`,
+        );
+      }
+
       return getBuyTx(program, req);
     }
     return getSellTx(program, req);
