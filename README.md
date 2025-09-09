@@ -1,6 +1,6 @@
 # @moonit/sdk
 
-Moonit SDK for Solana helps calculate moonit (previously moonshot) token prices at any point in the bonding curve. The package also allows the users to generate buy and sell transactions, provide the slippage amount and fix it to a trading side. 
+Moonit SDK for Solana helps calculate moonit (previously moonshot) token prices at any point in the bonding curve. The package also allows the users to generate buy and sell transactions, provide the slippage amount and fix it to a trading side.
 
 By Following the example you can create your high-performance trading bot within minutes.
 
@@ -21,6 +21,7 @@ yarn add @moonit/sdk
 Generate a keypair and send funds for the right environment (devnet or mainnet).
 
 ### Buy example
+
 ```typescript
 import { Environment, FixedSide, Moonit } from '@moonit/sdk';
 import {
@@ -100,6 +101,7 @@ export const buyIx = async (): Promise<void> => {
 ```
 
 ### Sell example
+
 ```typescript
 import { Environment, FixedSide, Moonit } from '@moonit/sdk';
 import {
@@ -177,7 +179,6 @@ export const sellIx = async (): Promise<void> => {
 };
 ```
 
-
 ### Mint token using SDK
 
 You can now mint tokens using the SDK. The SDK abstracts and handles the preparation, the submissions and the upload of all assets.
@@ -187,6 +188,7 @@ The `prepareMintTx` will gather all the necessary data to mint a token, and the 
 This can be done both in the browser or on the server side using KeyPair of the creator.
 
 Example:
+
 ```typescript
 import {
   CurveType,
@@ -220,7 +222,7 @@ export const createMint = async (): Promise<void> => {
     name: 'SDK_MINT',
     symbol: 'SDK_MINT',
     curveType: CurveType.CONSTANT_PRODUCT_V1,
-    migrationDex: MigrationDex.RAYDIUM,
+    migrationDex: MigrationDex.RAYDIUM, // or use METEORA_V2 for DAMM V2 pools
     icon,
     description: 'Token minted using the @moonit/sdk',
     links: [{ url: 'https://x.com', label: 'x handle' }],
@@ -251,8 +253,8 @@ export const createMint = async (): Promise<void> => {
 
   console.log(res);
 };
-
 ```
-For full example code please refer to [moonit-bot-examples](https://github.com/gomoonit/moonit-bot-examples) repository.
-> Please note the mint endpoint is subject to rate limit per IP address, current limit is **2 requests per 10 seconds**.
 
+For full example code please refer to [moonit-bot-examples](https://github.com/gomoonit/moonit-bot-examples) repository.
+
+> Please note the mint endpoint is subject to rate limit per IP address, current limit is **2 requests per 10 seconds**.
