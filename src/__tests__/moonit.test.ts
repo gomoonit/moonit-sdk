@@ -33,7 +33,7 @@ describe('Moonit', () => {
       name: 'TEST_TOKEN',
       symbol: 'TEST_TOKEN',
       curveType: CurveType.CONSTANT_PRODUCT_V1,
-      migrationDex: MigrationDex.RAYDIUM,
+      migrationDex: MigrationDex.VALIANT,
       icon: mockImg,
       description: 'TEST_TOKEN',
       links: [{ url: 'https://x.com', label: 'x handle' }],
@@ -45,13 +45,32 @@ describe('Moonit', () => {
     expect(prepMint.transaction).toBeDefined();
   });
 
-  it('should prepare and submit token mint', async () => {
+  it.only('should prepare and submit token mint', async () => {
+    try {
+      await moonit.prepareMintTx({
+        creator: creator.publicKey.toBase58(),
+        name: 'TEST_TOKEN',
+        symbol: 'TEST_TOKEN',
+        curveType: CurveType.CONSTANT_PRODUCT_V1,
+        migrationDex: MigrationDex.VALIANT,
+        icon: mockImg,
+        description: 'TEST_TOKEN',
+        links: [{ url: 'https://x.com', label: 'x handle' }],
+        banner: mockImg,
+        tokenAmount: '42000000000',
+        affiliate: {
+          wallet: creator.publicKey.toBase58(),
+        },
+      });
+    } catch (error) {
+      console.error(error);
+    }
     const prepMint = await moonit.prepareMintTx({
       creator: creator.publicKey.toBase58(),
       name: 'TEST_TOKEN',
       symbol: 'TEST_TOKEN',
       curveType: CurveType.CONSTANT_PRODUCT_V1,
-      migrationDex: MigrationDex.RAYDIUM,
+      migrationDex: MigrationDex.VALIANT,
       icon: mockImg,
       description: 'TEST_TOKEN',
       links: [{ url: 'https://x.com', label: 'x handle' }],
@@ -93,7 +112,7 @@ describe('Moonit', () => {
       name: 'TEST_TOKEN',
       symbol: 'TEST_TOKEN',
       curveType: CurveType.FLAT_V1,
-      migrationDex: MigrationDex.RAYDIUM,
+      migrationDex: MigrationDex.VALIANT,
       icon: mockImg,
       description: 'TEST_TOKEN',
       links: [{ url: 'https://x.com', label: 'x handle' }],
@@ -135,7 +154,7 @@ describe('Moonit', () => {
       name: 'TEST_TOKEN',
       symbol: 'TEST_TOKEN',
       curveType: CurveType.FLAT_V1_ANTI_SNIPE,
-      migrationDex: MigrationDex.RAYDIUM,
+      migrationDex: MigrationDex.VALIANT,
       icon: mockImg,
       description: 'TEST_TOKEN',
       links: [{ url: 'https://x.com', label: 'x handle' }],

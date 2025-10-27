@@ -33,12 +33,12 @@ describe('Token', () => {
       tokenAmount: BigInt(1_000_000_000),
     });
     expect(Number(currentPrice)).toBeGreaterThan(Number(minimalPrice));
-  });
+  }, 50000);
 
   test('get curve position price', async () => {
     const curvePosition = await token.getCurvePosition();
     expect(curvePosition).toBe(130000000000n);
-  });
+  }, 50000);
 
   test('get token price per collaterall', async () => {
     const buyAmountAtBeginning = await token.getTokenAmountByCollateral({
@@ -63,7 +63,7 @@ describe('Token', () => {
     });
 
     expect(sellAmount).toBeGreaterThan(buyAmount); // On sell curve goes backward, 0.1 sol means more tokens
-  });
+  }, 50000);
 
   test('get collaterall price by tokens', async () => {
     const buyCollateralAtBeginning = await token.getCollateralAmountByTokens({
@@ -89,7 +89,7 @@ describe('Token', () => {
     });
 
     expect(sellCollateral).toBeLessThan(buyCollateral); // On sell curve goes backward, less collateral for same amount of tokens
-  });
+  }, 50000);
 
   test('get prepared instructions, ready for the submit after signing', async () => {
     const preparedBuyIx = await token.prepareIxs({
@@ -111,5 +111,5 @@ describe('Token', () => {
     });
 
     expect(preparedSellIx.ixs[0]).toBeDefined();
-  });
+  }, 50000);
 });

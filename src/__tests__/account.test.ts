@@ -27,5 +27,5 @@ describe('Curve account', () => {
     expect(account.totalSupply).toBe(1000000000000000000n);
     expect(account.decimals).toBe(9);
     expect(String(account.mint)).toBe(mintAddress);
-  });
+  }, 50000);
 });

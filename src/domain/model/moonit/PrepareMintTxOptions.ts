@@ -32,10 +32,7 @@ export interface PrepareMintTxOptions {
   /**
    * DEX to use for token migration
    */
-  migrationDex:
-    | MigrationDex.RAYDIUM
-    | MigrationDex.METEORA
-    | MigrationDex.METEORA_V2;
+  migrationDex: MigrationDex.VALIANT;
 
   /**
    * Token icon encoded in base64 format

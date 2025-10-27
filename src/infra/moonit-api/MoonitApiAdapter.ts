@@ -63,7 +63,7 @@ export class MoonitApiAdapter {
     prepareBuyDto: MintTxPrepareDto,
   ): Promise<MintTxPrepareResponse> {
     return this.apiClient.authedRequest(
-      `/mint/tx/prepare/${pairId}/fogo/sdk`,
+      `/mint/tx/prepare/fogo/${pairId}/sdk`,
       this.token,
       {
         method: 'POST',
