@@ -49,7 +49,7 @@ export class MoonitApiAdapter {
     };
 
     return this.apiClient.authedRequest(
-      `/mint/create/metadata/sdk`,
+      `/mint/create/metadata/fogo/sdk`,
       this.token,
       {
         method: 'POST',
@@ -63,7 +63,7 @@ export class MoonitApiAdapter {
     prepareBuyDto: MintTxPrepareDto,
   ): Promise<MintTxPrepareResponse> {
     return this.apiClient.authedRequest(
-      `/mint/tx/prepare/${pairId}/sdk`,
+      `/mint/tx/prepare/fogo/${pairId}/sdk`,
       this.token,
       {
         method: 'POST',
@@ -73,9 +73,13 @@ export class MoonitApiAdapter {
   }
 
   submitMint(submitDto: MintTxSubmitDto): Promise<MintTxSubmitResponse> {
-    return this.apiClient.authedRequest(`/mint/tx/submit/sdk`, this.token, {
-      method: 'POST',
-      data: submitDto,
-    });
+    return this.apiClient.authedRequest(
+      `/mint/tx/submit/fogo/sdk`,
+      this.token,
+      {
+        method: 'POST',
+        data: submitDto,
+      },
+    );
   }
 }
