@@ -33,7 +33,7 @@ describe('FLAT_V1 curve token', () => {
 
     expect(curveAccount.curveType).toBe(3);
     expect(curveAccount.marketcapThreshold).toBe(200000000000n);
-    expect(curveAccount.priceIncrease).toBe(2000);
+    expect(curveAccount.priceIncrease).toBe(180);
     expect(curveAccount.totalSupply).toBe(1000000000000000000n);
   });
 
