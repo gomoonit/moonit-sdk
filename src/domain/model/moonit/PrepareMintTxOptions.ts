@@ -24,7 +24,10 @@ export interface PrepareMintTxOptions {
    * Currently only CONSTANT_PRODUCT_V1 and FLAT_V1 are supported
    * LINEAR_V1 is a legacy curve
    */
-  curveType: CurveType.CONSTANT_PRODUCT_V1 | CurveType.FLAT_V1;
+  curveType:
+    | CurveType.CONSTANT_PRODUCT_V1
+    | CurveType.FLAT_V1
+    | CurveType.FLAT_V1_ANTI_SNIPE;
 
   /**
    * DEX to use for token migration

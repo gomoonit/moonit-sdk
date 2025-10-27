@@ -87,12 +87,54 @@ describe('Moonit', () => {
     expect(res.status).toBe(TxStatus.SUCCESS);
   });
 
-  it.skip('should mint on flat curve', async () => {
+  it.skip('should mint on flat curve and perform a trade', async () => {
     const prepMint = await moonit.prepareMintTx({
       creator: creator.publicKey.toBase58(),
       name: 'TEST_TOKEN',
       symbol: 'TEST_TOKEN',
       curveType: CurveType.FLAT_V1,
+      migrationDex: MigrationDex.RAYDIUM,
+      icon: mockImg,
+      description: 'TEST_TOKEN',
+      links: [{ url: 'https://x.com', label: 'x handle' }],
+      banner: mockImg,
+      tokenAmount: '42000000000',
+      affiliate: {
+        wallet: creator.publicKey.toBase58(),
+      },
+    });
+
+    const deserializedTransaction =
+      SolanaSerializationService.deserializeVersionedTransaction(
+        prepMint.transaction,
+      );
+    if (deserializedTransaction == null) {
+      throw new Error('Failed to deserialize transaction');
+    }
+
+    deserializedTransaction.sign([creator]);
+
+    const signedTransaction =
+      SolanaSerializationService.serializeVersionedTransaction(
+        deserializedTransaction,
+      );
+
+    const res = await moonit.submitMintTx({
+      tokenId: prepMint.tokenId,
+      token: prepMint.token,
+      signedTransaction,
+    });
+
+    expect(res.txSignature).toBeDefined();
+    expect(res.status).toBe(TxStatus.SUCCESS);
+  });
+
+  it.skip('should mint on flat curve anti snipe', async () => {
+    const prepMint = await moonit.prepareMintTx({
+      creator: creator.publicKey.toBase58(),
+      name: 'TEST_TOKEN',
+      symbol: 'TEST_TOKEN',
+      curveType: CurveType.FLAT_V1_ANTI_SNIPE,
       migrationDex: MigrationDex.RAYDIUM,
       icon: mockImg,
       description: 'TEST_TOKEN',
