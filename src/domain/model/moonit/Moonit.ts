@@ -38,9 +38,13 @@ export class Moonit {
   async prepareMintTx(
     options: PrepareMintTxOptions,
   ): Promise<PrepareMintTxResponse> {
+    console.log('preparing mint tx');
+    console.log('options', { ...options, icon: undefined, banner: undefined });
     const createMintRes = await this.apiAdapter.createMint({
       ...options,
     });
+
+    console.log('createMintRes', createMintRes);
 
     const res = await this.apiAdapter.prepareMint(createMintRes.pairId, {
       amount: options.tokenAmount,
