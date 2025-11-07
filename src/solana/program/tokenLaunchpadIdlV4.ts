@@ -1,1070 +1,1234 @@
-export const IDL_V4 = {
-  address: '9oZhKSzHrr3z1mm2Z4iutf8koU7FjcTpGRqkpAFYWQYN',
+/**
+ * Program IDL in camelCase format in order to be used in JS/TS.
+ *
+ * Note that this is only a type helper and is not the actual IDL. The original
+ * IDL can be found at `target/idl/token_launchpad.json`.
+ */
+export type IDL_V4 = {
+  address: '9oZhKSzHrr3z1mm2Z4iutf8koU7FjcTpGRqkpAFYWQYN';
   metadata: {
-    name: 'token_launchpad',
-    version: '0.1.0',
-    spec: '0.1.0',
-    description: 'Created with Anchor',
-  },
+    name: 'tokenLaunchpad';
+    version: '0.1.0';
+    spec: '0.1.0';
+    description: 'Created with Anchor';
+  };
   instructions: [
     {
-      name: 'buy',
-      discriminator: [102, 6, 61, 18, 1, 218, 235, 234],
+      name: 'buy';
+      discriminator: [102, 6, 61, 18, 1, 218, 235, 234];
       accounts: [
         {
-          name: 'sender',
-          writable: true,
-          signer: true,
+          name: 'signerOrSession';
+          docs: ['This is either the user or a session representing the user'];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'sender_token_account',
-          writable: true,
+          name: 'payer';
+          docs: [
+            'Separate fee payer for account creations (cannot be the session)',
+          ];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'curve_account',
-          writable: true,
+          name: 'programSigner';
+          docs: [
+            'If within a session, this account is needed to sign token transfers in addition to the session key.',
+          ];
+          optional: true;
         },
         {
-          name: 'curve_token_account',
-          writable: true,
+          name: 'user';
+          docs: [
+            'The underlying user account extracted from the session (not necessarily a signer here)',
+          ];
         },
         {
-          name: 'dex_fee',
-          writable: true,
+          name: 'senderTokenAccount';
+          writable: true;
         },
         {
-          name: 'helio_fee',
-          writable: true,
+          name: 'curveAccount';
+          writable: true;
         },
         {
-          name: 'mint',
+          name: 'curveTokenAccount';
+          writable: true;
         },
         {
-          name: 'config_account',
+          name: 'wsolMint';
         },
         {
-          name: 'token_program',
+          name: 'senderWsolAccount';
+          writable: true;
         },
         {
-          name: 'associated_token_program',
+          name: 'curveWsolAccount';
+          writable: true;
         },
         {
-          name: 'system_program',
+          name: 'dexFee';
+          writable: true;
         },
-      ],
+        {
+          name: 'dexFeeWsolAccount';
+          writable: true;
+        },
+        {
+          name: 'helioFee';
+          writable: true;
+        },
+        {
+          name: 'helioFeeWsolAccount';
+          writable: true;
+        },
+        {
+          name: 'mint';
+        },
+        {
+          name: 'configAccount';
+        },
+        {
+          name: 'tokenProgram';
+        },
+        {
+          name: 'associatedTokenProgram';
+        },
+        {
+          name: 'systemProgram';
+        },
+      ];
       args: [
         {
-          name: 'data',
+          name: 'data';
           type: {
             defined: {
-              name: 'TradeParams',
-            },
-          },
+              name: 'tradeParams';
+            };
+          };
         },
-      ],
+      ];
     },
     {
-      name: 'buy_with_be_authority',
-      discriminator: [79, 77, 171, 237, 157, 49, 235, 198],
+      name: 'buyWithBeAuthority';
+      discriminator: [79, 77, 171, 237, 157, 49, 235, 198];
       accounts: [
         {
-          name: 'backend_authority',
-          docs: ['BE Authority'],
-          signer: true,
+          name: 'backendAuthority';
+          docs: ['BE Authority'];
+          signer: true;
         },
         {
-          name: 'sender',
-          writable: true,
-          signer: true,
+          name: 'signerOrSession';
+          docs: ['This is either the user or a session representing the user'];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'sender_token_account',
-          writable: true,
+          name: 'payer';
+          docs: ['Separate fee payer (cannot be session)'];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'curve_account',
-          writable: true,
+          name: 'programSigner';
+          docs: ['Program co-signer PDA when in session'];
+          optional: true;
         },
         {
-          name: 'curve_token_account',
-          writable: true,
+          name: 'user';
+          docs: ['Underlying user'];
         },
         {
-          name: 'dex_fee',
-          writable: true,
+          name: 'senderTokenAccount';
+          writable: true;
         },
         {
-          name: 'helio_fee',
-          writable: true,
+          name: 'curveAccount';
+          writable: true;
         },
         {
-          name: 'mint',
+          name: 'curveTokenAccount';
+          writable: true;
         },
         {
-          name: 'config_account',
+          name: 'wsolMint';
         },
         {
-          name: 'token_program',
+          name: 'senderWsolAccount';
+          writable: true;
         },
         {
-          name: 'associated_token_program',
+          name: 'curveWsolAccount';
+          writable: true;
         },
         {
-          name: 'system_program',
+          name: 'dexFee';
+          writable: true;
         },
-      ],
+        {
+          name: 'dexFeeWsolAccount';
+          writable: true;
+        },
+        {
+          name: 'helioFee';
+          writable: true;
+        },
+        {
+          name: 'helioFeeWsolAccount';
+          writable: true;
+        },
+        {
+          name: 'mint';
+        },
+        {
+          name: 'configAccount';
+        },
+        {
+          name: 'tokenProgram';
+        },
+        {
+          name: 'associatedTokenProgram';
+        },
+        {
+          name: 'systemProgram';
+        },
+      ];
       args: [
         {
-          name: 'data',
+          name: 'data';
           type: {
             defined: {
-              name: 'TradeParams',
-            },
-          },
+              name: 'tradeParams';
+            };
+          };
         },
-      ],
+      ];
     },
     {
-      name: 'config_init',
-      discriminator: [13, 236, 164, 173, 106, 253, 164, 185],
+      name: 'configInit';
+      discriminator: [13, 236, 164, 173, 106, 253, 164, 185];
       accounts: [
         {
-          name: 'config_authority',
-          writable: true,
-          signer: true,
+          name: 'configAuthority';
+          writable: true;
+          signer: true;
         },
         {
-          name: 'config_account',
-          writable: true,
+          name: 'configAccount';
+          writable: true;
         },
         {
-          name: 'system_program',
+          name: 'systemProgram';
         },
-      ],
+      ];
       args: [
         {
-          name: 'data',
+          name: 'data';
           type: {
             defined: {
-              name: 'ConfigParams',
-            },
-          },
+              name: 'configParams';
+            };
+          };
         },
-      ],
+      ];
     },
     {
-      name: 'config_update',
-      discriminator: [80, 37, 109, 136, 82, 135, 89, 241],
+      name: 'configUpdate';
+      discriminator: [80, 37, 109, 136, 82, 135, 89, 241];
       accounts: [
         {
-          name: 'config_authority',
-          signer: true,
+          name: 'configAuthority';
+          signer: true;
         },
         {
-          name: 'config_account',
-          writable: true,
+          name: 'configAccount';
+          writable: true;
         },
-      ],
+      ];
       args: [
         {
-          name: 'data',
+          name: 'data';
           type: {
             defined: {
-              name: 'ConfigParams',
-            },
-          },
+              name: 'configParams';
+            };
+          };
         },
-      ],
+      ];
     },
     {
-      name: 'migrate_funds',
-      discriminator: [42, 229, 10, 231, 189, 62, 193, 174],
+      name: 'migrateFunds';
+      discriminator: [42, 229, 10, 231, 189, 62, 193, 174];
       accounts: [
         {
-          name: 'backend_authority',
-          docs: ['BE Authority'],
-          signer: true,
+          name: 'backendAuthority';
+          docs: ['BE Authority'];
+          signer: true;
         },
         {
-          name: 'migration_authority',
+          name: 'migrationAuthority';
           docs: [
             'Migration Authority',
             'Owner and Payer over Token Accounts, needs to be mutable',
-          ],
-          writable: true,
-          signer: true,
+          ];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'curve_account',
+          name: 'curveAccount';
           docs: [
             'Curve Account',
             'The account is closed after this instruction',
-          ],
-          writable: true,
+          ];
+          writable: true;
         },
         {
-          name: 'curve_token_account',
+          name: 'curveTokenAccount';
           docs: [
             'Curve Token Account',
             'The account is closed after this instruction',
-          ],
-          writable: true,
+          ];
+          writable: true;
         },
         {
-          name: 'migration_authority_token_account',
-          docs: ['Authority token Account', 'Init on demand'],
-          writable: true,
+          name: 'migrationAuthorityTokenAccount';
+          docs: ['Authority token Account', 'Init on demand'];
+          writable: true;
         },
         {
-          name: 'mint',
+          name: 'mint';
           docs: [
             'InterfaceAccount: checks program ownership + deserialize into Mint',
-          ],
-          writable: true,
+          ];
+          writable: true;
         },
         {
-          name: 'dex_fee_account',
-          writable: true,
+          name: 'wsolMint';
         },
         {
-          name: 'helio_fee_account',
-          writable: true,
+          name: 'migrationAuthorityWsolAccount';
+          writable: true;
         },
         {
-          name: 'config_account',
+          name: 'curveWsolAccount';
+          writable: true;
         },
         {
-          name: 'system_program',
+          name: 'dexFeeAccount';
+          writable: true;
         },
         {
-          name: 'token_program',
+          name: 'dexFeeWsolAccount';
+          writable: true;
         },
         {
-          name: 'associated_token_program',
+          name: 'helioFeeAccount';
+          writable: true;
         },
-      ],
-      args: [],
+        {
+          name: 'helioFeeWsolAccount';
+          writable: true;
+        },
+        {
+          name: 'configAccount';
+        },
+        {
+          name: 'systemProgram';
+        },
+        {
+          name: 'tokenProgram';
+        },
+        {
+          name: 'associatedTokenProgram';
+        },
+      ];
+      args: [];
     },
     {
-      name: 'sell',
-      discriminator: [51, 230, 133, 164, 1, 127, 131, 173],
+      name: 'sell';
+      discriminator: [51, 230, 133, 164, 1, 127, 131, 173];
       accounts: [
         {
-          name: 'sender',
-          writable: true,
-          signer: true,
+          name: 'signerOrSession';
+          docs: ['This is either the user or a session representing the user'];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'sender_token_account',
-          writable: true,
+          name: 'payer';
+          docs: [
+            'Separate fee payer for account creations (cannot be the session)',
+          ];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'curve_account',
-          writable: true,
+          name: 'programSigner';
+          docs: ['If within a session, PDA co-signer for token transfers'];
+          optional: true;
         },
         {
-          name: 'curve_token_account',
-          writable: true,
+          name: 'user';
+          docs: ['The underlying user extracted from the session'];
         },
         {
-          name: 'dex_fee',
-          writable: true,
+          name: 'senderTokenAccount';
+          writable: true;
         },
         {
-          name: 'helio_fee',
-          writable: true,
+          name: 'curveAccount';
+          writable: true;
         },
         {
-          name: 'mint',
+          name: 'curveTokenAccount';
+          writable: true;
         },
         {
-          name: 'config_account',
+          name: 'wsolMint';
         },
         {
-          name: 'token_program',
+          name: 'senderWsolAccount';
+          writable: true;
         },
         {
-          name: 'associated_token_program',
+          name: 'curveWsolAccount';
+          writable: true;
         },
         {
-          name: 'system_program',
+          name: 'dexFee';
+          writable: true;
         },
-      ],
+        {
+          name: 'dexFeeWsolAccount';
+          writable: true;
+        },
+        {
+          name: 'helioFee';
+          writable: true;
+        },
+        {
+          name: 'helioFeeWsolAccount';
+          writable: true;
+        },
+        {
+          name: 'mint';
+        },
+        {
+          name: 'configAccount';
+        },
+        {
+          name: 'tokenProgram';
+        },
+        {
+          name: 'associatedTokenProgram';
+        },
+        {
+          name: 'systemProgram';
+        },
+      ];
       args: [
         {
-          name: 'data',
+          name: 'data';
           type: {
             defined: {
-              name: 'TradeParams',
-            },
-          },
+              name: 'tradeParams';
+            };
+          };
         },
-      ],
+      ];
     },
     {
-      name: 'token_mint',
-      discriminator: [3, 44, 164, 184, 123, 13, 245, 179],
+      name: 'tokenMint';
+      discriminator: [3, 44, 164, 184, 123, 13, 245, 179];
       accounts: [
         {
-          name: 'sender',
-          writable: true,
-          signer: true,
+          name: 'signerOrSession';
+          docs: ['This is either the user or a session representing the user'];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'backend_authority',
-          signer: true,
+          name: 'payer';
+          docs: [
+            'Payer for account initializations (must be a regular wallet, not a session)',
+          ];
+          writable: true;
+          signer: true;
         },
         {
-          name: 'curve_account',
-          writable: true,
+          name: 'backendAuthority';
+          signer: true;
         },
         {
-          name: 'mint',
-          writable: true,
-          signer: true,
+          name: 'curveAccount';
+          writable: true;
         },
         {
-          name: 'mint_metadata',
+          name: 'mint';
+          writable: true;
+          signer: true;
+        },
+        {
+          name: 'mintMetadata';
           docs: [
             'Type validating that the account is owned by the System Program = uninitialized',
             'seeds should ensure that the address is correct',
-          ],
-          writable: true,
+          ];
+          writable: true;
         },
         {
-          name: 'curve_token_account',
-          writable: true,
+          name: 'curveTokenAccount';
+          writable: true;
         },
         {
-          name: 'config_account',
+          name: 'wsolMint';
         },
         {
-          name: 'token_program',
+          name: 'curveWsolAccount';
+          writable: true;
         },
         {
-          name: 'associated_token_program',
+          name: 'configAccount';
         },
         {
-          name: 'mpl_token_metadata',
+          name: 'tokenProgram';
         },
         {
-          name: 'system_program',
+          name: 'associatedTokenProgram';
         },
-      ],
+        {
+          name: 'mplTokenMetadata';
+        },
+        {
+          name: 'systemProgram';
+        },
+      ];
       args: [
         {
-          name: 'mint_params',
+          name: 'mintParams';
           type: {
             defined: {
-              name: 'TokenMintParams',
-            },
-          },
+              name: 'tokenMintParams';
+            };
+          };
         },
-      ],
+      ];
     },
-  ],
+  ];
   accounts: [
     {
-      name: 'ConfigAccount',
-      discriminator: [189, 255, 97, 70, 186, 189, 24, 102],
+      name: 'configAccount';
+      discriminator: [189, 255, 97, 70, 186, 189, 24, 102];
     },
     {
-      name: 'CurveAccount',
-      discriminator: [8, 91, 83, 28, 132, 216, 248, 22],
+      name: 'curveAccount';
+      discriminator: [8, 91, 83, 28, 132, 216, 248, 22];
     },
-  ],
+  ];
   events: [
     {
-      name: 'MigrationEvent',
-      discriminator: [255, 202, 76, 147, 91, 231, 73, 22],
+      name: 'migrationEvent';
+      discriminator: [255, 202, 76, 147, 91, 231, 73, 22];
     },
     {
-      name: 'TradeEvent',
-      discriminator: [189, 219, 127, 211, 78, 230, 97, 238],
+      name: 'tradeEvent';
+      discriminator: [189, 219, 127, 211, 78, 230, 97, 238];
     },
-  ],
+  ];
   errors: [
     {
-      code: 6000,
-      name: 'InsufficientBalance',
-      msg: 'Insufficient SOL to pay for the transaction.',
+      code: 6000;
+      name: 'insufficientBalance';
+      msg: 'Insufficient SOL to pay for the transaction.';
     },
     {
-      code: 6001,
-      name: 'InvalidAmount',
-      msg: 'The amount must be available in the curve .',
+      code: 6001;
+      name: 'invalidAmount';
+      msg: 'The amount must be available in the curve .';
     },
     {
-      code: 6002,
-      name: 'InvalidSlippage',
-      msg: 'The slippage must be under 100 percent.',
+      code: 6002;
+      name: 'invalidSlippage';
+      msg: 'The slippage must be under 100 percent.';
     },
     {
-      code: 6003,
-      name: 'SlippageOverflow',
-      msg: 'The cost amount is not in the allowed slippage interval.',
+      code: 6003;
+      name: 'slippageOverflow';
+      msg: 'The cost amount is not in the allowed slippage interval.';
     },
     {
-      code: 6004,
-      name: 'ThresholdReached',
-      msg: 'Threshold limit exceeded.',
+      code: 6004;
+      name: 'thresholdReached';
+      msg: 'Threshold limit exceeded.';
     },
     {
-      code: 6005,
-      name: 'InvalidTokenAccount',
-      msg: 'Trade disabled, market cap threshold reached.',
+      code: 6005;
+      name: 'invalidTokenAccount';
+      msg: 'Trade disabled, market cap threshold reached.';
     },
     {
-      code: 6006,
-      name: 'InvalidCurveAccount',
-      msg: 'Invalid curve account.',
+      code: 6006;
+      name: 'invalidCurveAccount';
+      msg: 'Invalid curve account.';
     },
     {
-      code: 6007,
-      name: 'InvalidFeeAccount',
-      msg: 'Invalid fee account address.',
+      code: 6007;
+      name: 'invalidFeeAccount';
+      msg: 'Invalid fee account address.';
     },
     {
-      code: 6008,
-      name: 'CurveLimit',
-      msg: 'Curve limit exceeded.',
+      code: 6008;
+      name: 'curveLimit';
+      msg: 'Curve limit exceeded.';
     },
     {
-      code: 6009,
-      name: 'InvalidCurveType',
-      msg: 'Invalid curve type.',
+      code: 6009;
+      name: 'invalidCurveType';
+      msg: 'Invalid curve type.';
     },
     {
-      code: 6010,
-      name: 'InvalidCurrency',
-      msg: 'Invalid currency.',
+      code: 6010;
+      name: 'invalidCurrency';
+      msg: 'Invalid currency.';
     },
     {
-      code: 6011,
-      name: 'Arithmetics',
-      msg: 'Artithmetics error',
+      code: 6011;
+      name: 'arithmetics';
+      msg: 'Artithmetics error';
     },
     {
-      code: 6012,
-      name: 'ThresholdNotHit',
-      msg: 'Market Cap threshold not hit, cannot migrate funds yet',
+      code: 6012;
+      name: 'thresholdNotHit';
+      msg: 'Market Cap threshold not hit, cannot migrate funds yet';
     },
     {
-      code: 6013,
-      name: 'InvalidAuthority',
-      msg: 'Invalid Authority provided.',
+      code: 6013;
+      name: 'invalidAuthority';
+      msg: 'Invalid Authority provided.';
     },
     {
-      code: 6014,
-      name: 'TradeAmountTooLow',
-      msg: 'Trade amount too low , resulting in 0 costs',
+      code: 6014;
+      name: 'tradeAmountTooLow';
+      msg: 'Trade amount too low , resulting in 0 costs';
     },
     {
-      code: 6015,
-      name: 'ConfigFieldMissing',
-      msg: 'Config field needs to be present during initialization',
+      code: 6015;
+      name: 'configFieldMissing';
+      msg: 'Config field needs to be present during initialization';
     },
     {
-      code: 6016,
-      name: 'DifferentCurrencies',
-      msg: 'Unsupported different currency types',
+      code: 6016;
+      name: 'differentCurrencies';
+      msg: 'Unsupported different currency types';
     },
     {
-      code: 6017,
-      name: 'BasisPointTooHigh',
-      msg: 'Basis points too high',
+      code: 6017;
+      name: 'basisPointTooHigh';
+      msg: 'Basis points too high';
     },
     {
-      code: 6018,
-      name: 'FeeShareTooHigh',
-      msg: 'Fee share too High',
+      code: 6018;
+      name: 'feeShareTooHigh';
+      msg: 'Fee share too High';
     },
     {
-      code: 6019,
-      name: 'TokenDecimalsOutOfRange',
-      msg: 'Token decimals are not within the supported range',
+      code: 6019;
+      name: 'tokenDecimalsOutOfRange';
+      msg: 'Token decimals are not within the supported range';
     },
     {
-      code: 6020,
-      name: 'TokenNameTooLong',
-      msg: 'Token Name too long, max supported length is 32 bytes',
+      code: 6020;
+      name: 'tokenNameTooLong';
+      msg: 'Token Name too long, max supported length is 32 bytes';
     },
     {
-      code: 6021,
-      name: 'TokenSymbolTooLong',
-      msg: 'Token Symbol too long, max supported length is 10 bytes',
+      code: 6021;
+      name: 'tokenSymbolTooLong';
+      msg: 'Token Symbol too long, max supported length is 10 bytes';
     },
     {
-      code: 6022,
-      name: 'TokenURITooLong',
-      msg: 'Token URI too long, max supported length is 200 bytes',
+      code: 6022;
+      name: 'tokenUriTooLong';
+      msg: 'Token URI too long, max supported length is 200 bytes';
     },
     {
-      code: 6023,
-      name: 'IncorrectDecimalPlacesBounds',
-      msg: 'Minimum Decimal Places cannot be lower than Maximum Decimal Places',
+      code: 6023;
+      name: 'incorrectDecimalPlacesBounds';
+      msg: 'Minimum Decimal Places cannot be lower than Maximum Decimal Places';
     },
     {
-      code: 6024,
-      name: 'IncorrectTokenSupplyBounds',
-      msg: 'Minimum Token Supply cannot be lower than Maximum Token Supply',
+      code: 6024;
+      name: 'incorrectTokenSupplyBounds';
+      msg: 'Minimum Token Supply cannot be lower than Maximum Token Supply';
     },
     {
-      code: 6025,
-      name: 'TotalSupplyOutOfBounds',
-      msg: 'Token Total Supply out of bounds',
+      code: 6025;
+      name: 'totalSupplyOutOfBounds';
+      msg: 'Token Total Supply out of bounds';
     },
     {
-      code: 6026,
-      name: 'FinalCollateralTooLow',
-      msg: 'This setup will produce final collateral amount less than the migration fee',
+      code: 6026;
+      name: 'finalCollateralTooLow';
+      msg: 'This setup will produce final collateral amount less than the migration fee';
     },
     {
-      code: 6027,
-      name: 'CoefficientZero',
-      msg: 'One of the Coefficients is equal to ZERO',
+      code: 6027;
+      name: 'coefficientZero';
+      msg: 'One of the Coefficients is equal to ZERO';
     },
     {
-      code: 6028,
-      name: 'MarketCapThresholdTooLow',
-      msg: 'Market cap Threshold under the Hard lower bound limits',
+      code: 6028;
+      name: 'marketCapThresholdTooLow';
+      msg: 'Market cap Threshold under the Hard lower bound limits';
     },
     {
-      code: 6029,
-      name: 'CoefBOutofBounds',
-      msg: 'Default coef_b set out of hard limit bounds',
+      code: 6029;
+      name: 'coefBOutofBounds';
+      msg: 'Default coef_b set out of hard limit bounds';
     },
     {
-      code: 6030,
-      name: 'IncorrectMarketCap',
-      msg: 'For Constant Product the Market Cap threshold cannot be higher than 325 SOL',
+      code: 6030;
+      name: 'incorrectMarketCap';
+      msg: 'For Constant Product the Market Cap threshold cannot be higher than 325 SOL';
     },
     {
-      code: 6031,
-      name: 'IncorrectDecimals',
-      msg: 'For Constant Product the Decimal places cannot be other than 9',
+      code: 6031;
+      name: 'incorrectDecimals';
+      msg: 'For Constant Product the Decimal places cannot be other than 9';
     },
     {
-      code: 6032,
-      name: 'IncorrectMaxSupply',
-      msg: 'For Constant Product the Maximal Token Supply cannot be other than 1_000_000_000',
+      code: 6032;
+      name: 'incorrectMaxSupply';
+      msg: 'For Constant Product the Maximal Token Supply cannot be other than 1_000_000_000';
     },
     {
-      code: 6033,
-      name: 'MarketCapTooHigh',
-      msg: 'Market Cap Threshold set too high, will not be hit even if Curve Hard Limit reached',
+      code: 6033;
+      name: 'marketCapTooHigh';
+      msg: 'Market Cap Threshold set too high, will not be hit even if Curve Hard Limit reached';
     },
     {
-      code: 6034,
-      name: 'InvalidMigrationTarget',
-      msg: 'This Migration Target is not supported!',
+      code: 6034;
+      name: 'invalidMigrationTarget';
+      msg: 'This Migration Target is not supported!';
     },
     {
-      code: 6035,
-      name: 'General',
-      msg: 'General error',
+      code: 6035;
+      name: 'general';
+      msg: 'General error';
     },
     {
-      code: 6036,
-      name: 'BackendAuthorityRequiredToTrade',
-      msg: 'This token has anti-snipe measures. Trade on https://moon.it',
+      code: 6036;
+      name: 'backendAuthorityRequiredToTrade';
+      msg: 'This token has anti-snipe measures. Trade on https://moon.it';
     },
     {
-      code: 6037,
-      name: 'OnlyAntiSnipeCurves',
-      msg: 'Only anti-snipe curves can be traded using this instruction',
+      code: 6037;
+      name: 'onlyAntiSnipeCurves';
+      msg: 'Only anti-snipe curves can be traded using this instruction';
     },
-  ],
+    {
+      code: 6038;
+      name: 'sessionRequired';
+      msg: 'Session is required for this instruction';
+    },
+    {
+      code: 6039;
+      name: 'sessionUserMismatch';
+      msg: 'Session does not authorize this user';
+    },
+  ];
   types: [
     {
-      name: 'ConfigAccount',
+      name: 'configAccount';
       type: {
-        kind: 'struct',
+        kind: 'struct';
         fields: [
           {
-            name: 'migration_authority',
-            type: 'pubkey',
+            name: 'migrationAuthority';
+            type: 'pubkey';
           },
           {
-            name: 'backend_authority',
-            type: 'pubkey',
+            name: 'backendAuthority';
+            type: 'pubkey';
           },
           {
-            name: 'config_authority',
-            type: 'pubkey',
+            name: 'configAuthority';
+            type: 'pubkey';
           },
           {
-            name: 'helio_fee',
-            type: 'pubkey',
+            name: 'helioFee';
+            type: 'pubkey';
           },
           {
-            name: 'dex_fee',
-            type: 'pubkey',
+            name: 'dexFee';
+            type: 'pubkey';
           },
           {
-            name: 'fee_bps',
-            type: 'u16',
+            name: 'feeBps';
+            type: 'u16';
           },
           {
-            name: 'dex_fee_share',
-            type: 'u8',
+            name: 'dexFeeShare';
+            type: 'u8';
           },
           {
-            name: 'migration_fee',
-            type: 'u64',
+            name: 'migrationFee';
+            type: 'u64';
           },
           {
-            name: 'linear_curve_mcap_threshold',
-            type: 'u64',
+            name: 'linearCurveMcapThreshold';
+            type: 'u64';
           },
           {
-            name: 'marketcap_currency',
+            name: 'marketcapCurrency';
             type: {
               defined: {
-                name: 'Currency',
-              },
-            },
+                name: 'currency';
+              };
+            };
           },
           {
-            name: 'min_supported_decimal_places',
-            type: 'u8',
+            name: 'minSupportedDecimalPlaces';
+            type: 'u8';
           },
           {
-            name: 'max_supported_decimal_places',
-            type: 'u8',
+            name: 'maxSupportedDecimalPlaces';
+            type: 'u8';
           },
           {
-            name: 'min_supported_token_supply',
-            type: 'u64',
+            name: 'minSupportedTokenSupply';
+            type: 'u64';
           },
           {
-            name: 'max_supported_token_supply',
-            type: 'u64',
+            name: 'maxSupportedTokenSupply';
+            type: 'u64';
           },
           {
-            name: 'bump',
-            type: 'u8',
+            name: 'bump';
+            type: 'u8';
           },
           {
-            name: 'coef_b',
-            type: 'u32',
+            name: 'coefB';
+            type: 'u32';
           },
           {
-            name: 'constant_product_v1_mcap_threshold',
-            type: 'u64',
+            name: 'constantProductV1McapThreshold';
+            type: 'u64';
           },
           {
-            name: 'constant_product_v2_mcap_threshold',
-            type: 'u64',
+            name: 'constantProductV2McapThreshold';
+            type: 'u64';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'ConfigParams',
+      name: 'configParams';
       type: {
-        kind: 'struct',
+        kind: 'struct';
         fields: [
           {
-            name: 'migration_authority',
+            name: 'migrationAuthority';
             type: {
-              option: 'pubkey',
-            },
+              option: 'pubkey';
+            };
           },
           {
-            name: 'backend_authority',
+            name: 'backendAuthority';
             type: {
-              option: 'pubkey',
-            },
+              option: 'pubkey';
+            };
           },
           {
-            name: 'config_authority',
+            name: 'configAuthority';
             type: {
-              option: 'pubkey',
-            },
+              option: 'pubkey';
+            };
           },
           {
-            name: 'helio_fee',
+            name: 'helioFee';
             type: {
-              option: 'pubkey',
-            },
+              option: 'pubkey';
+            };
           },
           {
-            name: 'dex_fee',
+            name: 'dexFee';
             type: {
-              option: 'pubkey',
-            },
+              option: 'pubkey';
+            };
           },
           {
-            name: 'fee_bps',
+            name: 'feeBps';
             type: {
-              option: 'u16',
-            },
+              option: 'u16';
+            };
           },
           {
-            name: 'dex_fee_share',
+            name: 'dexFeeShare';
             type: {
-              option: 'u8',
-            },
+              option: 'u8';
+            };
           },
           {
-            name: 'migration_fee',
+            name: 'migrationFee';
             type: {
-              option: 'u64',
-            },
+              option: 'u64';
+            };
           },
           {
-            name: 'linear_curve_mcap_threshold',
+            name: 'linearCurveMcapThreshold';
             type: {
-              option: 'u64',
-            },
+              option: 'u64';
+            };
           },
           {
-            name: 'marketcap_currency',
+            name: 'marketcapCurrency';
             type: {
-              option: 'u8',
-            },
+              option: 'u8';
+            };
           },
           {
-            name: 'min_supported_decimal_places',
+            name: 'minSupportedDecimalPlaces';
             type: {
-              option: 'u8',
-            },
+              option: 'u8';
+            };
           },
           {
-            name: 'max_supported_decimal_places',
+            name: 'maxSupportedDecimalPlaces';
             type: {
-              option: 'u8',
-            },
+              option: 'u8';
+            };
           },
           {
-            name: 'min_supported_token_supply',
+            name: 'minSupportedTokenSupply';
             type: {
-              option: 'u64',
-            },
+              option: 'u64';
+            };
           },
           {
-            name: 'max_supported_token_supply',
+            name: 'maxSupportedTokenSupply';
             type: {
-              option: 'u64',
-            },
+              option: 'u64';
+            };
           },
           {
-            name: 'coef_b',
+            name: 'coefB';
             type: {
-              option: 'u32',
-            },
+              option: 'u32';
+            };
           },
           {
-            name: 'constant_product_v1_mcap_threshold',
+            name: 'constantProductV1McapThreshold';
             type: {
-              option: 'u64',
-            },
+              option: 'u64';
+            };
           },
           {
-            name: 'constant_product_v2_mcap_threshold',
+            name: 'constantProductV2McapThreshold';
             type: {
-              option: 'u64',
-            },
+              option: 'u64';
+            };
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'Currency',
+      name: 'currency';
       repr: {
-        kind: 'rust',
-      },
+        kind: 'rust';
+      };
       type: {
-        kind: 'enum',
+        kind: 'enum';
         variants: [
           {
-            name: 'Sol',
+            name: 'sol';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'CurveAccount',
+      name: 'curveAccount';
       type: {
-        kind: 'struct',
+        kind: 'struct';
         fields: [
           {
-            name: 'total_supply',
-            type: 'u64',
+            name: 'totalSupply';
+            type: 'u64';
           },
           {
-            name: 'curve_amount',
-            type: 'u64',
+            name: 'curveAmount';
+            type: 'u64';
           },
           {
-            name: 'mint',
-            type: 'pubkey',
+            name: 'mint';
+            type: 'pubkey';
           },
           {
-            name: 'decimals',
-            type: 'u8',
+            name: 'decimals';
+            type: 'u8';
           },
           {
-            name: 'collateral_currency',
+            name: 'collateralCurrency';
             type: {
               defined: {
-                name: 'Currency',
-              },
-            },
+                name: 'currency';
+              };
+            };
           },
           {
-            name: 'curve_type',
+            name: 'curveType';
             type: {
               defined: {
-                name: 'CurveType',
-              },
-            },
+                name: 'curveType';
+              };
+            };
           },
           {
-            name: 'marketcap_threshold',
-            type: 'u64',
+            name: 'marketcapThreshold';
+            type: 'u64';
           },
           {
-            name: 'marketcap_currency',
+            name: 'marketcapCurrency';
             type: {
               defined: {
-                name: 'Currency',
-              },
-            },
+                name: 'currency';
+              };
+            };
           },
           {
-            name: 'migration_fee',
-            type: 'u64',
+            name: 'migrationFee';
+            type: 'u64';
           },
           {
-            name: 'coef_b',
-            type: 'u32',
+            name: 'coefB';
+            type: 'u32';
           },
           {
-            name: 'bump',
-            type: 'u8',
+            name: 'bump';
+            type: 'u8';
           },
           {
-            name: 'migration_target',
+            name: 'migrationTarget';
             type: {
               defined: {
-                name: 'MigrationTarget',
-              },
-            },
+                name: 'migrationTarget';
+              };
+            };
           },
           {
-            name: 'price_increase',
-            type: 'u16',
+            name: 'priceIncrease';
+            type: 'u16';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'CurveType',
+      name: 'curveType';
       repr: {
-        kind: 'rust',
-      },
+        kind: 'rust';
+      };
       type: {
-        kind: 'enum',
+        kind: 'enum';
         variants: [
           {
-            name: 'LinearV1',
+            name: 'linearV1';
           },
           {
-            name: 'ConstantProductV1',
+            name: 'constantProductV1';
           },
           {
-            name: 'ConstantProductV2',
+            name: 'constantProductV2';
           },
           {
-            name: 'FlatCurveV1',
+            name: 'flatCurveV1';
           },
           {
-            name: 'FlatCurveV1AntiSnipe',
+            name: 'flatCurveV1AntiSnipe';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'MigrationEvent',
+      name: 'migrationEvent';
       type: {
-        kind: 'struct',
+        kind: 'struct';
         fields: [
           {
-            name: 'tokens_migrated',
-            type: 'u64',
+            name: 'tokensMigrated';
+            type: 'u64';
           },
           {
-            name: 'tokens_burned',
-            type: 'u64',
+            name: 'tokensBurned';
+            type: 'u64';
           },
           {
-            name: 'collateral_migrated',
-            type: 'u64',
+            name: 'collateralMigrated';
+            type: 'u64';
           },
           {
-            name: 'fee',
-            type: 'u64',
+            name: 'fee';
+            type: 'u64';
           },
           {
-            name: 'label',
-            type: 'string',
+            name: 'label';
+            type: 'string';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'MigrationTarget',
+      name: 'migrationTarget';
       repr: {
-        kind: 'rust',
-      },
+        kind: 'rust';
+      };
       type: {
-        kind: 'enum',
+        kind: 'enum';
         variants: [
           {
-            name: 'Valiant',
+            name: 'valiant';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'TokenMintParams',
+      name: 'tokenMintParams';
       type: {
-        kind: 'struct',
+        kind: 'struct';
         fields: [
           {
-            name: 'name',
-            type: 'string',
+            name: 'name';
+            type: 'string';
           },
           {
-            name: 'symbol',
-            type: 'string',
+            name: 'symbol';
+            type: 'string';
           },
           {
-            name: 'uri',
-            type: 'string',
+            name: 'uri';
+            type: 'string';
           },
           {
-            name: 'decimals',
-            type: 'u8',
+            name: 'decimals';
+            type: 'u8';
           },
           {
-            name: 'collateral_currency',
-            type: 'u8',
+            name: 'collateralCurrency';
+            type: 'u8';
           },
           {
-            name: 'amount',
-            type: 'u64',
+            name: 'amount';
+            type: 'u64';
           },
           {
-            name: 'curve_type',
-            type: 'u8',
+            name: 'curveType';
+            type: 'u8';
           },
           {
-            name: 'migration_target',
-            type: 'u8',
+            name: 'migrationTarget';
+            type: 'u8';
           },
           {
-            name: 'price_increase',
-            type: 'u16',
+            name: 'priceIncrease';
+            type: 'u16';
           },
           {
-            name: 'collateral_collected',
-            type: 'u64',
+            name: 'collateralCollected';
+            type: 'u64';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'TradeEvent',
+      name: 'tradeEvent';
       type: {
-        kind: 'struct',
+        kind: 'struct';
         fields: [
           {
-            name: 'amount',
-            type: 'u64',
+            name: 'amount';
+            type: 'u64';
           },
           {
-            name: 'collateral_amount',
-            type: 'u64',
+            name: 'collateralAmount';
+            type: 'u64';
           },
           {
-            name: 'dex_fee',
-            type: 'u64',
+            name: 'dexFee';
+            type: 'u64';
           },
           {
-            name: 'helio_fee',
-            type: 'u64',
+            name: 'helioFee';
+            type: 'u64';
           },
           {
-            name: 'allocation',
-            type: 'u64',
+            name: 'allocation';
+            type: 'u64';
           },
           {
-            name: 'curve',
-            type: 'pubkey',
+            name: 'curve';
+            type: 'pubkey';
           },
           {
-            name: 'cost_token',
-            type: 'pubkey',
+            name: 'costToken';
+            type: 'pubkey';
           },
           {
-            name: 'sender',
-            type: 'pubkey',
+            name: 'sender';
+            type: 'pubkey';
           },
           {
-            name: 'type_',
+            name: 'type';
             type: {
               defined: {
-                name: 'TradeType',
-              },
-            },
+                name: 'tradeType';
+              };
+            };
           },
           {
-            name: 'label',
-            type: 'string',
+            name: 'label';
+            type: 'string';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'TradeParams',
+      name: 'tradeParams';
       type: {
-        kind: 'struct',
+        kind: 'struct';
         fields: [
           {
-            name: 'token_amount',
-            type: 'u64',
+            name: 'tokenAmount';
+            type: 'u64';
           },
           {
-            name: 'collateral_amount',
-            type: 'u64',
+            name: 'collateralAmount';
+            type: 'u64';
           },
           {
-            name: 'fixed_side',
-            type: 'u8',
+            name: 'fixedSide';
+            type: 'u8';
           },
           {
-            name: 'slippage_bps',
-            type: 'u64',
+            name: 'slippageBps';
+            type: 'u64';
           },
-        ],
-      },
+        ];
+      };
     },
     {
-      name: 'TradeType',
+      name: 'tradeType';
       type: {
-        kind: 'enum',
+        kind: 'enum';
         variants: [
           {
-            name: 'Buy',
+            name: 'buy';
           },
           {
-            name: 'Sell',
+            name: 'sell';
           },
-        ],
-      },
+        ];
+      };
     },
-  ],
+  ];
 };

@@ -5,13 +5,13 @@ import {
 } from '../token';
 import { GetTokenAmountSyncOptions } from '../token/GetTokenAmountSyncOptions';
 import { AbstractCurveAdapter } from './AbstractCurveAdapter';
-import { ConstantProductCurveV1 } from '@heliofi/launchpad-common';
+import { FogoConstantProductCurveV1 } from '@heliofi/launchpad-common';
 import { GetCollateralAmountSyncOptions } from '../token/GetCollateralAmountSyncOptions';
 
 export class ConstantProductCurveV1Adapter extends AbstractCurveAdapter {
   private readonly platformFeeBps: number = 100;
 
-  private readonly curve = new ConstantProductCurveV1();
+  private readonly curve = new FogoConstantProductCurveV1();
 
   getCollateralPrice(options: GetCollateralPriceOptions): Promise<bigint> {
     return this.getCollateralAmountByTokens({

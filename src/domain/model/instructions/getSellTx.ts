@@ -1,6 +1,7 @@
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   getAssociatedTokenAddress,
+  NATIVE_MINT,
   TOKEN_PROGRAM_ID,
 } from '@solana/spl-token';
 import {
@@ -37,6 +38,29 @@ export const getSellTx = async (
     true,
   );
 
+  // WSOL mint and required WSOL ATAs per IDL v4
+  const wsolMint = NATIVE_MINT;
+  const senderWsolAccount = await getAssociatedTokenAddress(
+    wsolMint,
+    sender,
+    true,
+  );
+  const curveWsolAccount = await getAssociatedTokenAddress(
+    wsolMint,
+    curveAccount,
+    true,
+  );
+  const dexFeeWsolAccount = await getAssociatedTokenAddress(
+    wsolMint,
+    dexFeeAccount,
+    true,
+  );
+  const helioFeeWsolAccount = await getAssociatedTokenAddress(
+    wsolMint,
+    helioFeeAccount,
+    true,
+  );
+
   const data = {
     tokenAmount: convertBigIntToBN(req.tokenAmount),
     fixedSide: req.fixedSide,
@@ -47,14 +71,21 @@ export const getSellTx = async (
   return program.methods
     .sell(data)
     .accounts({
-      sender,
+      signerOrSession: sender,
+      payer: sender,
+      user: sender,
       senderTokenAccount,
       curveAccount,
       curveTokenAccount,
+      wsolMint,
+      senderWsolAccount,
+      curveWsolAccount,
       mint,
       configAccount,
       dexFee: dexFeeAccount,
+      dexFeeWsolAccount,
       helioFee: helioFeeAccount,
+      helioFeeWsolAccount,
       tokenProgram: TOKEN_PROGRAM_ID,
       associatedTokenProgram: ASSOCIATED_TOKEN_PROGRAM_ID,
       systemProgram: SystemProgram.programId,
