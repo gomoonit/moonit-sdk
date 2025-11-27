@@ -103,7 +103,7 @@ export const buyIx = async (): Promise<void> => {
 ### Sell example
 
 ```typescript
-import { Environment, FixedSide, Moonit } from '@moonit/sdk';
+import { Environment, FixedSide, Moonit } from '@moonit/sdk-fogo';
 import {
   ComputeBudgetProgram,
   Connection,
