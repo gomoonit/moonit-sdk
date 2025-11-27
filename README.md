@@ -1,4 +1,4 @@
-# @moonit/sdk
+# @moonit/sdk-fogo
 
 Moonit SDK for Solana helps calculate moonit (previously moonshot) token prices at any point in the bonding curve. The package also allows the users to generate buy and sell transactions, provide the slippage amount and fix it to a trading side.
 
@@ -11,9 +11,9 @@ By Following the example you can create your high-performance trading bot within
 Install the package using `yarn` or `npm`
 
 ```shell
-npm i @moonit/sdk
+npm i @moonit/sdk-fogo
 # or
-yarn add @moonit/sdk
+yarn add @moonit/sdk-fogo
 ```
 
 ## Direct RPC call prepare and send transaction
@@ -23,7 +23,7 @@ Generate a keypair and send funds for the right environment (devnet or mainnet).
 ### Buy example
 
 ```typescript
-import { Environment, FixedSide, Moonit } from '@moonit/sdk';
+import { Environment, FixedSide, Moonit } from '@moonit/sdk-fogo';
 import {
   ComputeBudgetProgram,
   Connection,
@@ -103,7 +103,7 @@ export const buyIx = async (): Promise<void> => {
 ### Sell example
 
 ```typescript
-import { Environment, FixedSide, Moonit } from '@moonit/sdk';
+import { Environment, FixedSide, Moonit } from '@moonit/sdk-fogo';
 import {
   ComputeBudgetProgram,
   Connection,
@@ -196,7 +196,7 @@ import {
   MigrationDex,
   Moonit,
   SolanaSerializationService,
-} from '@moonit/sdk';
+} from '@moonit/sdk-fogo';
 import { Keypair } from '@solana/web3.js';
 import testWallet from '../../test-wallet.json';
 
@@ -224,7 +224,7 @@ export const createMint = async (): Promise<void> => {
     curveType: CurveType.CONSTANT_PRODUCT_V1,
     migrationDex: MigrationDex.RAYDIUM, // or use METEORA_V2 for DAMM V2 pools
     icon,
-    description: 'Token minted using the @moonit/sdk',
+    description: 'Token minted using the @moonit/sdk-fogo',
     links: [{ url: 'https://x.com', label: 'x handle' }],
     banner: icon,
     tokenAmount: '42000000000',
