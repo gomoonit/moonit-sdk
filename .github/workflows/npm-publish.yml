@@ -1,19 +1,11 @@
 name: NPM Publish
 
-# ---------------------------------------------------------------
-# TESTING: trigger on every push so you can verify the pipeline.
-# Once verified, comment out the "push" block and uncomment the
-# "workflow_dispatch" block below.
-# ---------------------------------------------------------------
 on:
-  push:
-
-# on:
-#   workflow_dispatch:
-#     inputs:
-#       version:
-#         description: Required on main branch (e.g. 1.2.3)
-#         required: false
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Required on main branch (e.g. 1.2.3)
+        required: false
 
 permissions:
   contents: write
