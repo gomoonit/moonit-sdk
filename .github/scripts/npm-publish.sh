@@ -133,4 +133,6 @@ echo "       ALL DONE"
 echo "  ========================================"
 echo ""
 
-[[ -n "${PR_URL:-}" ]] && echo "  Merge the version bump PR: $PR_URL"
+if [[ -n "${PR_URL:-}" ]]; then
+  echo "  Merge the version bump PR: $PR_URL"
+fi
