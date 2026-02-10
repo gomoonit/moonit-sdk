@@ -119,12 +119,31 @@ EOF
 )")
 
   echo "  PR created: $PR_URL"
+
+  echo ""
+  echo "  Creating GitHub Release $TAG_NAME ..."
+
+  gh release create "$TAG_NAME" \
+    --title "@moonit/sdk v$FINAL_VERSION" \
+    --generate-notes
+
+  echo "  GitHub Release created!"
 else
   echo ""
   echo "  Pushing version bump to $BRANCH_NAME ..."
 
   git push origin HEAD:"$BRANCH_NAME"
   git push origin "$TAG_NAME"
+
+  echo ""
+  echo "  Creating GitHub pre-release $TAG_NAME ..."
+
+  gh release create "$TAG_NAME" \
+    --title "@moonit/sdk v$FINAL_VERSION" \
+    --prerelease \
+    --generate-notes
+
+  echo "  GitHub pre-release created!"
 fi
 
 echo ""
