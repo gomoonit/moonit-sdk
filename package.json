@@ -11,7 +11,7 @@
     "format": "prettier --write 'src/**/*.{js,ts,json,md}'",
     "prepublishOnly": "rm -rf dist && npm run build"
   },
-  "repository": "git@github.com:@gomoonit/moonit-sdk",
+  "repository": "https://github.com/gomoonit/moonit-sdk",
   "author": "https://t.me/+857VprHCIgpjZjRk",
   "license": "MIT",
   "devDependencies": {
