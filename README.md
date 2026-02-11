@@ -73,7 +73,7 @@ export const buyIx = async (): Promise<void> => {
     tokenAmount,
     collateralAmount,
     tradeDirection: 'BUY',
-    fixedSide: FixedSide.OUT, // This means you will get exactly the token amount and slippage is applied to collateral amount
+    fixedSide: FixedSide.OUT, // This means you will get exactly the token amount and slippage is applied to collateral amount.
   });
 
   const priorityIx = ComputeBudgetProgram.setComputeUnitPrice({
