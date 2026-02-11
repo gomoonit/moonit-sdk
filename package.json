@@ -1,6 +1,6 @@
 {
   "name": "@moonit/sdk",
-  "version": "1.3.3-alpha.1770753990",
+  "version": "1.4.0",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
