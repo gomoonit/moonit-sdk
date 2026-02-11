@@ -1,0 +1,44 @@
+name: NPM Publish
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Required on main branch (e.g. 1.2.3)
+        required: false
+
+permissions:
+  contents: write
+  id-token: write
+  pull-requests: write
+
+jobs:
+  publish:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: 'yarn'
+          registry-url: 'https://registry.npmjs.org'
+
+      # Node 24 is required for trusted publishers (npm >= 10.9).
+      # The app itself may target an older version -- ignore engine checks.
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile --ignore-engines
+
+      - name: Build and publish
+        shell: bash
+        env:
+          INPUT_VERSION: ${{ inputs.version }}
+          BRANCH_NAME: ${{ github.ref_name }}
+          GH_TOKEN: ${{ github.token }}
+        run: .github/scripts/npm-publish.sh

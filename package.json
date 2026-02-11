@@ -1,6 +1,6 @@
 {
   "name": "@moonit/sdk",
-  "version": "1.3.0",
+  "version": "1.3.3-alpha.1770753990",
   "main": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
@@ -8,9 +8,10 @@
     "watch": "tsc --watch",
     "test": "jest",
     "lint": "eslint 'src/**/*.{js,ts}'",
-    "format": "prettier --write 'src/**/*.{js,ts,json,md}'"
+    "format": "prettier --write 'src/**/*.{js,ts,json,md}'",
+    "prepublishOnly": "rm -rf dist && npm run build"
   },
-  "repository": "git@github.com:@gomoonit/moonit-sdk",
+  "repository": "https://github.com/gomoonit/moonit-sdk",
   "author": "https://t.me/+857VprHCIgpjZjRk",
   "license": "MIT",
   "devDependencies": {
