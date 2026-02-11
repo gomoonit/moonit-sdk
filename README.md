@@ -132,7 +132,7 @@ export const sellIx = async (): Promise<void> => {
   });
 
   const curvePos = await token.getCurvePosition();
-  console.log('Current position of the curve: ', curvePos); // Prints the current curve position
+  console.log('Current position of the curve: ', curvePos); // Prints the current curve position.
 
   // make sure creator has funds
   const creator = Keypair.fromSecretKey(Uint8Array.from(testWallet));
